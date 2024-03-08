@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <div align="center">
-=======
-﻿<div align="center">
->>>>>>> 4ff9175 (Initial commit)
 <h1>LibRead-Tool</h1>
 <strong><i>Converts online novels into audiobooks</i></strong>
 <br>
@@ -85,8 +81,4 @@ Introducing LibRead-tool – your go-to for turning online novels into awesome a
 <a href="https://pypi.org/project/PyWinCtl/">PyWinCtl</a>
 <br>
 <a href="https://pypi.org/project/edge-tts/">edge-tts</a>
-<<<<<<< HEAD
 </details>
-=======
-</details>
->>>>>>> 4ff9175 (Initial commit)
