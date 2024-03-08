@@ -1,0 +1,12 @@
+src/Build/
+src/Temp/
+**/__pycache__/
+**/.OPD/
+*.ini
+*.html
+*.txt
+*.mp3
+*.vtt
+
+!src/build-command.txt
+!src/requirements.txt

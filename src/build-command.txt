@@ -1,0 +1,1 @@
+pyinstaller --onefile --workpath "Temp/" --distpath "Build/" ./libread-tool.py --specpath "Temp/" -n "LibRead-Tool" -i "$pwd/favicon.ico"

@@ -1,0 +1,7 @@
+beautifulsoup4==4.12.3
+edge_tts==6.1.10
+music_tag==0.4.3
+pynput==1.7.6
+PyWinCtl==0.3
+Requests==2.31.0
+urllib3==1.26.5
