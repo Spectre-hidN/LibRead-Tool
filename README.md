@@ -19,7 +19,7 @@ Introducing LibRead-tool – your go-to for turning online novels into awesome a
 - Download the executable binary files from the release page for your system
 - To execute the program, use the following method
 	- On Windows, double-click on the application to run it.
-	- On Ubuntu-based distros, open a terminal in the directory where the executable file is saved and execute the following command `./LibRead-Tool_Zorin-OS`.  <br>If you are getting a permission denied error, then you have to execute the command `chmod +x LibRead-Tool_Zorin-OS` to make it executable.
+	- On Ubuntu-based distros, open a terminal in the directory where the executable file is saved and execute the following command `./LibRead-Tool_Zorin-OS`.  <br>If you are getting a permission denied error, then you have to execute the command <br>`chmod +x LibRead-Tool_Zorin-OS` to make it executable.
 <p><br></p>
 <h4 id="running-from-source">Running from source</h4>
 <ul>
