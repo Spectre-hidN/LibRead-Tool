@@ -7,6 +7,11 @@
   
 Introducing LibRead-tool – your go-to for turning online novels into awesome audio! Fetch your favourites and convert them into audiobooks. Say hello to hands-free storytelling!
 
+<p float="left">
+<img src="screenshots/SR.gif" alt="LibRead-Tool Main page", width=400>
+<img src="screenshots/RSS.png" alt="Result", width=350>
+</p>
+
 ## 🌸 Features
 - 🔍 **Search** novels directly within LibRead-Tool
 - 📕 Convert novels into one audiobook or **Split it into parts** 
