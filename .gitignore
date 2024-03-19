@@ -8,6 +8,7 @@ src/Temp/
 *.mp3
 *.vtt
 *.jpg
+*.code-workspace
 
 !src/build-command.txt
 !src/requirements.txt
