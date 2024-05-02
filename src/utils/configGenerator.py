@@ -68,6 +68,12 @@ embedSubtitles = 1
 ; Usually, this happens when FFMPEG is not accessible by LibRead-Tool.
 ; 1 = yes, 0 = no
 forceGrabFirstThenConvert = 0
+
+; If the below switch is enabled, then LibRead-Tool will replace the existing parts with the new ones.
+; However, if you deactivate the switch, LibRead-Tool will not overwrite the material if the part file already exists, even if the contents are only partially available.
+; Disabling this will force the "forceGrabFirstThenConvert" switch to be enabled.
+; 1 = yes, 0 = no
+replacePartContents = 1
                  
 ; All Voices are lsited below
 ; Name: af-ZA-AdriNeural

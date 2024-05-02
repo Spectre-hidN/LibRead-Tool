@@ -17,6 +17,7 @@ CONFIG_FILE = "libread-config.ini"
 # Global varialbes. Values taken from the config file
 DOMAIN_NAME = COVER_IMAGE_NAME = OUTPUT_FILE_NAME = REPLACEMENT_CHARACTER = ""
 FORCE_USE_M1 = False
+PART_REPLACEMENT = True
 
 # global function declaration for simplicity
 printInf = Prettify.printInf
@@ -31,12 +32,13 @@ def _readConfig():
         try:
             config = configparser.ConfigParser()
             config.read(CONFIG_FILE)
-            global DOMAIN_NAME, COVER_IMAGE_NAME, OUTPUT_FILE_NAME, REPLACEMENT_CHARACTER, FORCE_USE_M1
+            global DOMAIN_NAME, COVER_IMAGE_NAME, OUTPUT_FILE_NAME, REPLACEMENT_CHARACTER, FORCE_USE_M1, PART_REPLACEMENT
             DOMAIN_NAME = config.get("DOMAIN", "domainName")
             COVER_IMAGE_NAME = config.get("NOMENCLATURES", "coverImageNomenclature")
             OUTPUT_FILE_NAME = config.get("NOMENCLATURES", "outputNomenclature")
             REPLACEMENT_CHARACTER = config.get("NOMENCLATURES", "whitespaceReplacementCharacter")
             FORCE_USE_M1 = config.getboolean("TTS_CONFIG", "forceGrabFirstThenConvert")
+            PART_REPLACEMENT = config.getboolean("TTS_CONFIG", "replacePartContents")
         except:
             printWar("Corrupted config file detected! Re-generating a new one...")
             time.sleep(2)
@@ -64,10 +66,15 @@ if __name__ == "__main__":
 \033[38;5;78m| |      | ||  _ \ |  __  / | ___ |(____ | / _  |(_____)| | / _ \  / _ \ | | \033[0m
 | |_____ | || |_) )| |  \ \ | ____|/ ___ |( (_| |       | || |_| || |_| || | 
 |_______)|_||____/ |_|   |_||_____)\_____| \____|       |_| \___/  \___/  \_)
-""")
+
+          """)
     
     _readConfig()
-    print("\nChecking connection with libread...")
+
+    if(not PART_REPLACEMENT):
+        printFeaturedText("Content replacement is disabled! The LibRead Tool will not overwrite the existing parts before converting.")
+
+    print("Checking connection with libread...")
     time.sleep(2)
     if(checkConnection()):
         printSuc("Connection established with libread successfully!")
@@ -79,7 +86,7 @@ if __name__ == "__main__":
     if performSanityCheck():
         canUseM2ForTTS = True
 
-    if(FORCE_USE_M1):
+    if(FORCE_USE_M1 or not PART_REPLACEMENT):
         canUseM2ForTTS = False
 
     print("\n")
@@ -229,13 +236,19 @@ if __name__ == "__main__":
             actualOutputFileName = actualOutputFileName.replace(" ", REPLACEMENT_CHARACTER)
         if(i+1 < endChapter):
             try:
-                with open(f"{results[selectedIndex]['title']}/{actualOutputFileName}.txt", "w", encoding='utf-8') as f:
-                    f.write(mergedArticle)
-                    f.close()
-            except:   
-                with open(f"Articles/{actualOutputFileName}.txt", "w", encoding='utf-8') as f:
-                    f.write(mergedArticle)
-                    f.close()
+                if (not PART_REPLACEMENT and os.path.isfile(f"{results[selectedIndex]['title']}/{actualOutputFileName}.txt")):
+                    pass
+                else:
+                    with open(f"{results[selectedIndex]['title']}/{actualOutputFileName}.txt", "w", encoding='utf-8') as f:
+                        f.write(mergedArticle)
+                        f.close()
+            except:
+                if(not PART_REPLACEMENT and os.path.isfile(f"Articles/{actualOutputFileName}.txt")):
+                    pass
+                else:
+                    with open(f"Articles/{actualOutputFileName}.txt", "w", encoding='utf-8') as f:
+                        f.write(mergedArticle)
+                        f.close()
             
             # merge converted chunks and delete the opd folder
             if(isTTS and canUseM2ForTTS):
