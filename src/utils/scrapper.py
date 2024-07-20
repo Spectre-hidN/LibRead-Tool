@@ -116,7 +116,7 @@ def getMetadata(url: str):
     metadata.update({'status' : status})
 
     try:
-        imageUrl = soup.select(IMAGE_URL_SELECTOR)[0]["src"]
+        imageUrl = f"https://{DOMAIN_NAME}/" + soup.select(IMAGE_URL_SELECTOR)[0]["src"]
 
         image = requests.get(imageUrl, headers=HEADERS, stream=True)
         metadata.update({'cover-image':image})
