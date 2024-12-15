@@ -1,4 +1,5 @@
 import requests
+import hrequests
 from bs4 import BeautifulSoup
 import os
 import configparser
@@ -129,10 +130,10 @@ def getArticle(url: str):
     _readConfig()
     
     try:
-        res = requests.get(url, headers=HEADERS, verify=False)
+        res = hrequests.get(url, headers=HEADERS, verify=False)
     except:
         try:
-            res = requests.get(url, headers=HEADERS)
+            res = hrequests.get(url, headers=HEADERS)
         except Exception as E:
             printErr(f"Error occured while fetching {url}. | Error: {E} |")
         
